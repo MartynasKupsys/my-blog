@@ -1,3 +1,25 @@
 body {
-  background-color: antiquewhite;
+  /* background-color: antiquewhite; */
+}
+
+img {
+  width: 300px;
+}
+
+section {
+  height: 100vh;
+}
+
+textarea {
+  width: 150px;
+  height: 100px;
+}
+
+.col-4 {
+  width: 300px;
+  margin: 30px;
+}
+
+.aprasymas {
+  width: 200px;
 }

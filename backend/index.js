@@ -4,6 +4,7 @@ import router from "./routers/records.js";
 
 const app = express();
 const port = 5000;
+
 app.use(cors());
 
 app.use(
@@ -11,11 +12,12 @@ app.use(
     extended: false,
   })
 );
-
+app.use("/pictures", express.static("pictures"));
 app.use(express.json());
 
 // middlewares
 app.use("/", router);
+app.use("/irasyti", router);
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
