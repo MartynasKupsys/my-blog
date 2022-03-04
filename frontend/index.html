@@ -18,20 +18,28 @@
   </div>
   <hr />
   <body>
-    <section id="records">
-      <div class="d-flex justify-content-center">
-        <div class="data row d-flex"></div>
+    <section id="records" class="d-flex justify-content-center">
+      <div class="d-flex justify-content-center col-9">
+        <div class="data row d-flex col-10 justify-content-center"></div>
       </div>
     </section>
-    <section id="formos-pildymas">
-      <div>
+    <section id="formos-pildymas" class="d-flex justify-content-center align-items-center">
+      <div class="d-flex flex-column col-lg-6">
         <form id="naujas-irasas" enctype="multipart/form-data">
-          <label for="pavadinimas">Pavadinimas: </label>
-          <input type="text" name="pavadinimas" />
-          <label for="aprasymas">Aprašymas: </label>
-          <textarea name="aprasymas"></textarea>
-          <input type="file" name="failas" />
-          <button id="write" type="submit">Irasyti</button>
+          <div class="col d-flex flex-column marginas">
+            <label for="pavadinimas" class="form-label">Pavadinimas: </label>
+            <input class="form-control" type="text" name="pavadinimas" />
+          </div>
+          <div class="col d-flex flex-column marginas">
+            <label for="aprasymas" class="form-label">Aprašymas: </label>
+            <textarea class="form-control" name="aprasymas"></textarea>
+          </div>
+          <div class="col d-flex flex-column marginas">
+            <input class="form-control" type="file" name="failas" />
+          </div>
+          <div class="col d-flex flex-column marginas">
+            <button class="btn btn-success" id="write" type="submit">Irasyti</button>
+          </div>
         </form>
       </div>
     </section>

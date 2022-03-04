@@ -1,25 +1,34 @@
-body {
-  /* background-color: antiquewhite; */
-}
-
 img {
   width: 300px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  /* overflow: visible; */
 }
 
-section {
+/* section {
   height: 100vh;
-}
+} */
 
 textarea {
-  width: 150px;
+  /* width: 150px; */
   height: 100px;
 }
 
 .col-4 {
   width: 300px;
-  margin: 30px;
+  margin: 5px;
 }
 
 .aprasymas {
-  width: 200px;
+  width: 300px;
+}
+.marginas {
+  margin-bottom: 25px;
+}
+
+.border {
+  border: solid 1px gray;
+  border-radius: 10px;
+  /* margin-left: 5px;
+  margin-right: 5px; */
 }

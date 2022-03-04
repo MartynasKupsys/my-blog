@@ -1,7 +1,8 @@
 import * as express from "express";
-import { writeFile as wf, readFile, access, writeFile, lchown } from "fs";
+import { writeFile as wf, readFile, access, unlink } from "fs";
 import * as path from "path";
 import multer from "multer";
+
 // import { fileURLToPath } from "url";
 
 // const __filename = fileURLToPath(import.meta.url);
@@ -18,6 +19,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 const target = path.join("./", "database", "data.json");
+// const images = path.join("./");
 console.log(target);
 const router = express.Router();
 
@@ -93,30 +95,39 @@ router.post("/irasyti", upload.single("failas"), (req, res) => {
   });
 });
 
-router.get("/delete/:id", (req, res) => {
+router.delete("/delete/:id", (req, res) => {
   const id = req.params.id;
   console.log(id);
   readFile(target, "utf8", (err, data) => {
     if (err) {
-      res.json({ response });
+      res.json({ response: false, message: `Can't read file` });
+      return;
     }
+    const duomenys = JSON.parse(data);
+    // console.log(duomenys);
+    const findData = duomenys.find((el, index, arr) => {
+      if (el.id === parseInt(id)) {
+        return arr.splice(index, 1);
+      }
+    });
+    const imgLink = findData.image;
+    console.log(duomenys.length);
+    // console.log(findData);
+
+    console.log(imgLink);
+    unlink(`.${imgLink}`, (err) => {
+      if (err) throw err;
+      console.log(`${imgLink} was deleted`);
+      wf(target, JSON.stringify(duomenys), (err) => {
+        if (err) {
+          res.json({ response: false, message: `Failed to update file: ${err}` });
+        } else {
+          res.json({ response: true, message: `Record deleted`, data: JSON.stringify(duomenys) });
+        }
+      });
+    });
+    // res.json({ response: true, data: JSONstringify(duomenys) });
   });
-  res.json({ id });
-  // access(target, (err) => {
-  //   if (err) {
-  //     // res.json({ response: false, message: `File with data don't exist!!` });
-  //     res.json({ response: false, message: `Prasome prideti pirmaji irasa` });
-  //   } else {
-  //     readFile(target, "utf8", (err, data) => {
-  //       if (data.length === 0) {
-  //         res.json({ response: false, message: `Prasome prideti pirmaji irasa` });
-  //       } else {
-  //         res.json({ response: true, message: "Nuskaityta", data: data });
-  //       }
-  //     });
-  //     // res.json({ response: true, message: "Hello World" });
-  //   }
-  // });
 });
 
 export default router;

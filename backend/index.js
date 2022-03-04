@@ -18,6 +18,7 @@ app.use(express.json());
 // middlewares
 app.use("/", router);
 app.use("/irasyti", router);
+app.use("/delete", router);
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);

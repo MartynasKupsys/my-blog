@@ -2,10 +2,12 @@ function deleteRecord() {
   document.querySelectorAll(".delete").forEach((el) => {
     el.addEventListener("click", (event) => {
       const id = el.getAttribute("data-id");
-      fetch(`http://localhost:5000/delete/${id}`)
+      fetch(`http://localhost:5000/delete/${id}`, {
+        method: "DELETE",
+      })
         .then((response) => response.json())
         .then((res) => {
-          console.log(res);
+          atvaizdavimas(res);
         });
       // console.log(id);
     });
@@ -19,7 +21,7 @@ function atvaizdavimas(duomenys) {
     const irasai = JSON.parse(duomenys.data);
     console.log(irasai);
     const atvaizdavimas = irasai.reduce((pre, cur) => {
-      pre += `<div class='col-4 g-col-4 d-flex flex-column align-items-center'> 
+      pre += `<div class='col-4 d-flex flex-column align-items-center mb-1 border'> 
         <div><img src=http://localhost:5000${cur.image} /></div>
         <div>${cur.pavadinimas}</div>
         <div>${cur.data}</div>
