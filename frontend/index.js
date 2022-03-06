@@ -29,7 +29,7 @@ const editRecord = () => {
         .then((response) => response.json())
         .then((res) => {
           const data = JSON.parse(res.data);
-          // console.log(data.image.split("/")[2]);
+          console.log(data.image.split("/")[2]);
           console.log(res);
           // if (formMode === "post") {
           document.querySelector("#naujas-irasas").setAttribute("data-mode", "edit");
@@ -95,7 +95,7 @@ const writeRecord = () => {
 
     let articleForm = document.querySelector("#naujas-irasas");
     let formData = new FormData(articleForm);
-    console.log(document.querySelector('#naujas-irasas input[name="pavadinimas"]').value);
+
     document.querySelector('#naujas-irasas input[name="pavadinimas"]').value = "";
     document.querySelector('#naujas-irasas textarea[name="aprasymas"]').value = "";
     document.querySelector('#naujas-irasas input[name="failas"]').value = null;
@@ -104,10 +104,10 @@ const writeRecord = () => {
     // console.log(formData.entries());
 
     if (formMode === "edit") {
-      for (let pair of formData.entries()) {
-        console.log(pair);
-        console.log(pair[0] + ", " + pair[1]);
-      }
+      // for (let pair of formData.entries()) {
+      //   console.log(pair);
+      //   console.log(pair[0] + ", " + pair[1]);
+      // }
       console.log("This is 'PUT' Method");
       console.log("Start update record");
       fetch(`http://localhost:5000/irasyti/${id}`, {
@@ -118,14 +118,12 @@ const writeRecord = () => {
         .then((response) => response.json())
         .then((res) => {
           console.log(res);
-          formMode = document.querySelector("form").removeAttribute("data-mode");
-          document.querySelector("form").removeAttribute("data-id-edit");
+
+          document.querySelector("#naujas-irasas").removeAttribute("data-mode");
+          document.querySelector("#naujas-irasas").removeAttribute("data-id-edit");
+          return atvaizdavimas(res);
         });
     } else {
-      for (let pair of formData.entries()) {
-        console.log(pair);
-        console.log(pair[0] + ", " + pair[1]);
-      }
       console.log("This is POST Method");
       fetch("http://localhost:5000/irasyti", {
         method: "POST",
@@ -172,7 +170,7 @@ const pagrindinisAtvaizdavimas = () => {
   fetch("http://localhost:5000")
     .then((response) => response.json())
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       atvaizdavimas(res);
     });
 };

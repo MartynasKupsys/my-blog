@@ -49,6 +49,10 @@ router.post("/irasyti", upload.single("failas"), (req, res) => {
   if (imageObj !== undefined) {
     image = "/pictures/" + imageObj.filename;
     req.body.image = image;
+    req.body.imageInfo = req.file;
+  } else {
+    res.json({ message: "Nepasirinkta nuotrauka" });
+    return;
   }
 
   req.body.data = new Date().toISOString().slice(0, 10);
@@ -94,10 +98,58 @@ router.post("/irasyti", upload.single("failas"), (req, res) => {
   });
 });
 
-router.post("/irasyti/:id", (req, res) => {
-  console.log(req.params.id);
+router.post("/irasyti/:id", upload.single("failas"), (req, res) => {
+  const id = req.params.id;
+  const imageObj = req.file;
+
+  if (imageObj !== undefined) {
+    req.body.image = "/pictures/" + imageObj.filename;
+    req.body.imageInfo = req.file;
+  } else {
+    res.json({ message: "Nepasirinkta nuotrauka" });
+    return;
+  }
+
+  req.body.data = new Date().toISOString().slice(0, 10);
+  req.body.id = id;
+
   console.log(req.body);
-  res.json(req.body);
+  readFile(target, "utf8", (err, data) => {
+    if (err) {
+      res.json({ response: false, message: `Can't read file` });
+      return;
+    }
+    // readFile();
+
+    const duomenys = JSON.parse(data);
+    // const findData = duomenys.find((el) => el.id === parseInt(id));
+    // console.log(findData);
+    duomenys.forEach((el, index) => {
+      if (el.id === parseInt(id)) {
+        duomenys[index].pavadinimas = req.body.pavadinimas;
+        duomenys[index].aprasymas = req.body.aprasymas;
+        duomenys[index].image = req.body.image;
+        duomenys[index].imageInfo = req.body.imageInfo;
+        duomenys[index].data = req.body.data;
+      }
+    });
+    console.log(duomenys);
+    let updatedData = JSON.stringify(duomenys);
+    console.log(updatedData);
+    wf(target, updatedData, "utf8", (err) => {
+      if (!err) {
+        res.json({
+          response: true,
+          message: "Informacija atnaujinta ir issaugota",
+          data: updatedData,
+        });
+      } else {
+        res.json({ response: false, message: "Nepavyko sukurti failo" });
+      }
+    });
+
+    // res.json(findData);
+  });
 });
 
 // DELETE router to delete selected record
@@ -140,6 +192,7 @@ router.get("/record-one/:id", (req, res) => {
       res.json({ response: false, message: `Can't read file` });
       return;
     }
+    // readFile();
 
     const duomenys = JSON.parse(data);
     const findData = duomenys.find((el) => el.id === parseInt(id));
