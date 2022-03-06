@@ -1,3 +1,15 @@
+body {
+  font-family: "Poppins", sans-serif;
+}
+.pradzia {
+  background-color: white;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+}
+.navigacija {
+  width: 100%;
+}
 img {
   width: 100%;
   border-top-left-radius: 10px;
@@ -13,11 +25,20 @@ textarea {
 }
 
 .data {
-  height: 80vw;
+  margin-top: 170px;
+  height: 100vw;
+}
+
+.info {
+  color: #a9a9a9;
+}
+
+.aprasymas {
+  color: gray;
 }
 
 .card {
-  width: 33%;
+  width: 25%;
 }
 
 .marginas {
@@ -27,4 +48,78 @@ textarea {
 .border {
   border: solid 1px gray;
   border-radius: 10px;
+}
+
+#formos-pildymas {
+  height: 100vh;
+}
+
+.linkas {
+  text-decoration: none;
+  color: black;
+  font-weight: bolder;
+}
+.linkas-1 {
+  text-decoration: none;
+  color: white;
+  /* color: black; */
+  /* font-weight: bolder; */
+}
+
+@media (max-width: 1480px) {
+  .data {
+    margin-top: 170px;
+    height: 105vw;
+  }
+}
+
+@media (max-width: 1346px) {
+  .data {
+    margin-top: 170px;
+    height: 110vw;
+  }
+}
+@media (max-width: 1295px) {
+  .data {
+    margin-top: 170px;
+    height: 115vw;
+  }
+}
+
+@media (max-width: 1225px) {
+  .data {
+    margin-top: 170px;
+    height: 120vw;
+  }
+}
+
+@media (max-width: 1125px) {
+  .data {
+    margin-top: 170px;
+    height: 125vw;
+  }
+}
+
+@media (max-width: 1095px) {
+  .data {
+    margin-top: 170px;
+    height: 130vw;
+  }
+}
+
+@media (max-width: 1050px) {
+  .data {
+    margin-top: 170px;
+    height: 140vw;
+  }
+}
+
+@media (max-width: 1000px) {
+  .data {
+    margin-top: 170px;
+    height: 350vw;
+  }
+  .card {
+    width: 50%;
+  }
 }

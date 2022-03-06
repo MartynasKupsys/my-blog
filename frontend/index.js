@@ -53,14 +53,14 @@ const atvaizdavimas = (duomenys) => {
     const irasai = JSON.parse(duomenys.data);
     // console.log(irasai);
     const atvaizdavimas = irasai.reduce((pre, cur) => {
-      pre += `<div class='card item d-flex flex-column align-items-center mb-1 border'> 
+      pre += `<div class='card item d-flex flex-column align-items-start m-1 border'> 
         <div><img src=http://localhost:5000${cur.image} /></div>
-        <div class="title">${cur.pavadinimas}</div>
-        <div class="info">${cur.data}</div>
-        <div class='aprasymas'>${cur.aprasymas}</div>
-        <div>
-          <button data-id="${cur.id}" class="delete">Delete</button>
-          <button data-id="${cur.id}" class="edit">Edit</button>
+        <div class="title fw-bolder p-1 fs-4">${cur.pavadinimas}</div>
+        <div class="info p-1 fs-6 ">${cur.data}</div>
+        <div class='aprasymas p-1'>${cur.aprasymas}</div>
+        <div p-1>
+          <button data-id="${cur.id}" class="delete btn btn-danger">Delete</button>
+          <button data-id="${cur.id}" class="edit btn btn-secondary"><a href='#formos-pildymas' class='linkas-1'>Edit</a></button>
         </div>
         
       </div>`;
