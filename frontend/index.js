@@ -29,8 +29,8 @@ const editRecord = () => {
         .then((response) => response.json())
         .then((res) => {
           const data = JSON.parse(res.data);
-          console.log(data.image.split("/")[2]);
-          console.log(res);
+          // console.log(data.image.split("/")[2]);
+          // console.log(res);
           // if (formMode === "post") {
           document.querySelector("#naujas-irasas").setAttribute("data-mode", "edit");
           document.querySelector("#naujas-irasas").setAttribute("data-id-edit", id);
@@ -47,16 +47,16 @@ const editRecord = () => {
 };
 
 const atvaizdavimas = (duomenys) => {
-  console.log(duomenys);
+  // console.log(duomenys);
   if (duomenys.response) {
     let html = document.querySelector(".data");
     const irasai = JSON.parse(duomenys.data);
-    console.log(irasai);
+    // console.log(irasai);
     const atvaizdavimas = irasai.reduce((pre, cur) => {
-      pre += `<div class='col-4 d-flex flex-column align-items-center mb-1 border'> 
+      pre += `<div class='card item d-flex flex-column align-items-center mb-1 border'> 
         <div><img src=http://localhost:5000${cur.image} /></div>
-        <div>${cur.pavadinimas}</div>
-        <div>${cur.data}</div>
+        <div class="title">${cur.pavadinimas}</div>
+        <div class="info">${cur.data}</div>
         <div class='aprasymas'>${cur.aprasymas}</div>
         <div>
           <button data-id="${cur.id}" class="delete">Delete</button>
@@ -91,7 +91,7 @@ const writeRecord = () => {
     //=======================================================
     let formMode = document.querySelector("#naujas-irasas").getAttribute("data-mode");
     const id = document.querySelector("#naujas-irasas").getAttribute("data-id-edit");
-    console.log(formMode, id);
+    // console.log(formMode, id);
 
     let articleForm = document.querySelector("#naujas-irasas");
     let formData = new FormData(articleForm);

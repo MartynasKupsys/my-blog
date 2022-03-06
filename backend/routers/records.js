@@ -41,8 +41,8 @@ router.get("/", (req, res) => {
 
 // POST router new record
 router.post("/irasyti", upload.single("failas"), (req, res) => {
-  console.log(req.body);
-  console.log(req.file);
+  // console.log(req.body);
+  // console.log(req.file);
   let imageObj = req.file;
   let image;
 
@@ -113,7 +113,7 @@ router.post("/irasyti/:id", upload.single("failas"), (req, res) => {
   req.body.data = new Date().toISOString().slice(0, 10);
   req.body.id = id;
 
-  console.log(req.body);
+  // console.log(req.body);
   readFile(target, "utf8", (err, data) => {
     if (err) {
       res.json({ response: false, message: `Can't read file` });
@@ -133,9 +133,9 @@ router.post("/irasyti/:id", upload.single("failas"), (req, res) => {
         duomenys[index].data = req.body.data;
       }
     });
-    console.log(duomenys);
+    // console.log(duomenys);
     let updatedData = JSON.stringify(duomenys);
-    console.log(updatedData);
+    // console.log(updatedData);
     wf(target, updatedData, "utf8", (err) => {
       if (!err) {
         res.json({

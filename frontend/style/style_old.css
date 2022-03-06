@@ -1,0 +1,215 @@
+/* body {
+  height: 100vh;
+} */
+
+img {
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  /* overflow: visible; */
+}
+
+/* section {
+  height: 100vh;
+} */
+
+textarea {
+  /* width: 150px; */
+  height: 100px;
+}
+
+.card {
+  width: 25%;
+}
+
+/* .div-main {
+  height: 80%;
+} */
+.data {
+  height: 80vw;
+}
+
+.card {
+  width: 25%;
+}
+
+.marginas {
+  margin-bottom: 25px;
+}
+
+.border {
+  border: solid 1px gray;
+  border-radius: 10px;
+  /* margin-left: 5px;
+  margin-right: 5px; */
+}
+
+/* .container-data {
+  display: flex;
+  flex-flow: column wrap;
+  align-content: space-between; */
+/* Your container needs a fixed height, and it 
+   * needs to be taller than your tallest column. */
+/* height: 115vw;
+}
+
+.item {
+  width: 32%;
+  margin-bottom: 2%;
+}
+
+.item:nth-child(3n + 1) {
+  order: 1;
+}
+.item:nth-child(3n + 2) {
+  order: 2;
+}
+.item:nth-child(3n) {
+  order: 3;
+}
+.container-data::before,
+.container-data::after {
+  content: "";
+  flex-basis: 100%;
+  width: 0;
+  order: 2;
+}
+
+@media (max-width: 1740px) {
+  .container-data {
+    display: flex;
+    flex-flow: column wrap;
+    align-content: space-between;
+    height: 120vw;
+  }
+}
+
+@media (max-width: 1685px) {
+  .container-data {
+    display: flex;
+    flex-flow: column wrap;
+    align-content: space-between;
+    height: 125vw;
+  }
+}
+
+@media (max-width: 1605px) {
+  .container-data {
+    display: flex;
+    flex-flow: column wrap;
+    align-content: space-between;
+    height: 130vw;
+  }
+}
+
+@media (max-width: 1532px) {
+  .container-data {
+    display: flex;
+    flex-flow: column wrap;
+    align-content: space-between;
+    height: 135vw;
+  }
+}
+
+@media (max-width: 1465px) {
+  .container-data {
+    display: flex;
+    flex-flow: column wrap;
+    align-content: space-between;
+    height: 140vw;
+  }
+}
+
+@media (max-width: 1290px) {
+  .container-data {
+    display: flex;
+    flex-flow: column wrap;
+    align-content: space-between;
+    height: 145vw;
+  }
+}
+
+@media (max-width: 1240px) {
+  .container-data {
+    display: flex;
+    flex-flow: column wrap;
+    align-content: space-between;
+    height: 150vw;
+  }
+}
+
+@media (max-width: 1100px) {
+  .container-data {
+    display: flex;
+    flex-flow: column wrap;
+    align-content: space-between;
+    height: 155vw;
+  }
+}
+
+@media (max-width: 1060px) {
+  .container-data {
+    display: flex;
+    flex-flow: column wrap;
+    align-content: space-between;
+    height: 250vw;
+  }
+
+  .item {
+    width: 50%;
+    margin-bottom: 2%;
+  }
+  .item:nth-child(n + 1) {
+    order: 1;
+  }
+  .item:nth-child(2n) {
+    order: 2;
+  }
+  .container-data::before,
+  .container-data::after {
+    content: "";
+    flex-basis: 100%;
+    width: 0;
+    order: 2;
+  }
+}
+
+@media (max-width: 1030px) {
+  .container-data {
+    display: flex;
+    flex-flow: column wrap;
+    align-content: space-between;
+    height: 255vw;
+  }
+
+  .item {
+    width: 50%;
+    margin-bottom: 2%;
+  }
+  .item:nth-child(n + 1) {
+    order: 1;
+  }
+  .item:nth-child(2n) {
+    order: 2;
+  }
+  .container-data::before,
+  .container-data::after {
+    content: "";
+    flex-basis: 100%;
+    width: 0;
+    order: 2;
+  }
+}
+
+@media (max-width: 840px) {
+  .container-data {
+    display: flex;
+    flex-flow: column nowrap;
+    align-content: space-between;
+  }
+
+  .item {
+    width: 100%;
+    margin-bottom: 2%;
+  }
+} */
