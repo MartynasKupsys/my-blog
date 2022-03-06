@@ -19,50 +19,51 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 const target = path.join("./", "database", "data.json");
-// const images = path.join("./");
-console.log(target);
 const router = express.Router();
 
+// GET router get all data from data.json
 router.get("/", (req, res) => {
   access(target, (err) => {
     if (err) {
-      // res.json({ response: false, message: `File with data don't exist!!` });
       res.json({ response: false, message: `Prasome prideti pirmaji irasa` });
     } else {
       readFile(target, "utf8", (err, data) => {
+        if (err) throw err;
         if (data.length === 0) {
           res.json({ response: false, message: `Prasome prideti pirmaji irasa` });
         } else {
           res.json({ response: true, message: "Nuskaityta", data: data });
         }
       });
-      // res.json({ response: true, message: "Hello World" });
     }
   });
 });
 
+// POST router new record
 router.post("/irasyti", upload.single("failas"), (req, res) => {
-  // console.log(req.body);
-  // console.log(req.file);
+  console.log(req.body);
+  console.log(req.file);
   let imageObj = req.file;
   let image;
+
   if (imageObj !== undefined) {
     image = "/pictures/" + imageObj.filename;
     req.body.image = image;
   }
-  console.log(image);
+
   req.body.data = new Date().toISOString().slice(0, 10);
   const postData = req.body;
+
   if (postData.pavadinimas.length === 0) {
     res.json({ message: "Pavadinimo laukelis negali buti tuscias" });
     return;
   }
+
   if (postData.aprasymas.length === 0) {
     res.json({ message: "Aprasymo laukelis negali buti tuscias" });
     return;
   }
 
-  console.log(postData);
   access(target, (err) => {
     if (err) {
       const arrayData = [];
@@ -78,9 +79,7 @@ router.post("/irasyti", upload.single("failas"), (req, res) => {
     } else {
       readFile(target, "utf8", (err, data) => {
         if (err) throw err;
-        // console.log(data);
         let oldData = JSON.parse(data);
-        // postData.id = oldData[oldData.length - 1].id + 1;
         postData.id = Date.now();
         oldData.push(postData);
         wf(target, JSON.stringify(oldData), (err) => {
@@ -95,26 +94,30 @@ router.post("/irasyti", upload.single("failas"), (req, res) => {
   });
 });
 
+router.post("/irasyti/:id", (req, res) => {
+  console.log(req.params.id);
+  console.log(req.body);
+  res.json(req.body);
+});
+
+// DELETE router to delete selected record
 router.delete("/delete/:id", (req, res) => {
   const id = req.params.id;
-  console.log(id);
   readFile(target, "utf8", (err, data) => {
     if (err) {
       res.json({ response: false, message: `Can't read file` });
       return;
     }
+
     const duomenys = JSON.parse(data);
-    // console.log(duomenys);
     const findData = duomenys.find((el, index, arr) => {
       if (el.id === parseInt(id)) {
         return arr.splice(index, 1);
       }
     });
-    const imgLink = findData.image;
-    console.log(duomenys.length);
-    // console.log(findData);
 
-    console.log(imgLink);
+    const imgLink = findData.image;
+
     unlink(`.${imgLink}`, (err) => {
       if (err) throw err;
       console.log(`${imgLink} was deleted`);
@@ -126,7 +129,22 @@ router.delete("/delete/:id", (req, res) => {
         }
       });
     });
-    // res.json({ response: true, data: JSONstringify(duomenys) });
+  });
+});
+
+// GET router to get one selected record
+router.get("/record-one/:id", (req, res) => {
+  let id = req.params.id;
+  readFile(target, "utf8", (err, data) => {
+    if (err) {
+      res.json({ response: false, message: `Can't read file` });
+      return;
+    }
+
+    const duomenys = JSON.parse(data);
+    const findData = duomenys.find((el) => el.id === parseInt(id));
+
+    res.json({ response: true, data: JSON.stringify(findData) });
   });
 });
 

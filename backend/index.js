@@ -19,6 +19,8 @@ app.use(express.json());
 app.use("/", router);
 app.use("/irasyti", router);
 app.use("/delete", router);
+app.use("/record-one", router);
+// app.use("/atnaujinti", router);
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
